@@ -1,0 +1,54 @@
+@startuml
+!include ./puml.style
+class Main {
+    + {static} main(args: String[])
+    + {static} configure(args: String[]): Configuration
+}
+
+class Configuration <<immutable>> {
+    + p1Strength: Integer
+    + p2Strengh: Integer
+    + scoreSystem: String
+}
+
+Configuration <--+ Main
+
+class Player {
+    - name: String
+    - strength: Integer
+    + equals(o: Object): boolean
+}
+
+class Match {
+    + {static} P1_NAME = "p1"
+    + {static} P2_NAME = "p2"
+    --
+    + this(strengthP1: Integer, strengthP2: Integer, scoreSystem: String)
+    --
+    + play(): Player
+    --
+    - playGame()
+}
+
+Main .> Match
+
+Player "player1" <--* Match
+Player "player2" <--* Match
+
+
+Match *--> "scorer" ScoreSystem
+
+interface ScoreSystem {
+    + isEnded(): boolean
+    + winner(): Optional<Player>
+    + score(p: Player)
+    + status(): String
+}
+
+class StupidMVP implements ScoreSystem {
+    + this(p1: Player, p2: Player)
+}
+
+
+
+@enduml

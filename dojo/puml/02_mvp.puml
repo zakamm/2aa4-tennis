@@ -27,8 +27,8 @@ class Match {
 
 class ScoreSystem {
     + isEnded(): boolean
-    + winner(): Optional<Player>
-    + score(p: Player)
+    + winner(): Optional<String>
+    + score(p: String)
     + status(): String
 }
 

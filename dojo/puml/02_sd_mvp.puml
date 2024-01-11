@@ -13,15 +13,13 @@ participant "scorer: ScoreSystem" as Scorer
         Main -> Match: this(str1, str2)
 
         create Scorer
-            Match -> Scorer: this(p1, p2)
+            Match -> Scorer: this()
             return
     return
 
     Main -> Match: play()
         loop !scorer.isEnded?
-             Match -> Match: playGame()
              Match -> Scorer: score(p1 || p2)
-             return
              return
         end
         Match -> Scorer: winner()

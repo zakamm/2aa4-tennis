@@ -20,7 +20,7 @@ class Match {
     --
     + this(strengthP1: Integer, strengthP2: Integer)
     --
-    + play(): Player
+    + play(): String
 }
 
 Main ..> Match
